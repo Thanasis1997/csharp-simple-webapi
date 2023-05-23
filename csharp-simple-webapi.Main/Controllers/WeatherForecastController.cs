@@ -1,9 +1,10 @@
+using csharp_simple_webapi.Main.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace csharp_simple_webapi.Main.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("weather/[controller]")]
 public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
@@ -21,6 +22,7 @@ public class WeatherForecastController : ControllerBase
     [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<WeatherForecast> Get()
     {
+
         return Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

@@ -1,4 +1,4 @@
-namespace csharp_simple_webapi.Main;
+namespace csharp_simple_webapi.Main.Model;
 
 public class WeatherForecast
 {
