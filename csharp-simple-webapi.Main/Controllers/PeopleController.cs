@@ -28,22 +28,7 @@ namespace csharp_simple_webapi.Main.Controllers
         }
 
 
-        //[HttpGet]
-        //public List<Person> Get()
-        //{
-
-        //    return _list;
-        //}
-
-
-
-        //[HttpGet]
-        //[Route("{id}")]
-        //public Person Get(int id)
-        //{
-        //    var person = _list.Where(x => x.Id == id).FirstOrDefault();
-        //    return person;
-        //}
+        
 
         [HttpGet]
         public async Task<IResult> Get()
@@ -77,7 +62,23 @@ namespace csharp_simple_webapi.Main.Controllers
            
         }
 
+        [HttpPost]
+        [Route("")]
+        public async Task<IResult> InsertPerson(Person person)
+        {
+            try
+            {
+                if (person == null) return Results.Problem();
 
+                _list.Add(person);
+                return Results.Ok(person);
+
+            }
+            catch(Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
 
 
 
@@ -86,3 +87,37 @@ namespace csharp_simple_webapi.Main.Controllers
 
     }
 }
+
+
+/*
+
+REST API
+
+HTTPS
+
+Clients and Servers
+
+Http Cycle?
+
+
+
+ */ 
+
+
+
+//[HttpGet]
+//public List<Person> Get()
+//{
+
+//    return _list;
+//}
+
+
+
+//[HttpGet]
+//[Route("{id}")]
+//public Person Get(int id)
+//{
+//    var person = _list.Where(x => x.Id == id).FirstOrDefault();
+//    return person;
+//}
