@@ -82,6 +82,31 @@ namespace csharp_simple_webapi.Main.Controllers
 
 
 
+        [HttpDelete]
+        [Route("")]
+        public async Task<IResult> DeletePerson(int id)
+        {
+            try
+            {
+                if(_list.Any(x => x.Id==id))
+                {
+                    //var p = _list.SingleOrDefault(x => x.Id == id);
+                    //_list.Remove(p);
+                    //
+                    _list.RemoveAll(x => x.Id == id);
+                    return Results.Ok();
+                }
+                else
+                {
+                    return Results.NotFound();
+                }
+            }
+            catch(Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
 
 
 
