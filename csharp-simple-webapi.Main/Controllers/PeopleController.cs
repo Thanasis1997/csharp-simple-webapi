@@ -28,12 +28,12 @@ namespace csharp_simple_webapi.Main.Controllers
         }
 
 
-        [HttpGet]
-        public List<Person> Get()
-        {
+        //[HttpGet]
+        //public List<Person> Get()
+        //{
 
-            return _list;
-        }
+        //    return _list;
+        //}
 
 
 
@@ -45,6 +45,19 @@ namespace csharp_simple_webapi.Main.Controllers
         //    return person;
         //}
 
+        [HttpGet]
+        public async Task<IResult> Get()
+        {
+
+            try
+            {
+                return Results.Ok(_list);
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
 
         [HttpGet]
         [Route("{id}")]
