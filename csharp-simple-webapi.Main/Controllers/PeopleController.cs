@@ -107,6 +107,33 @@ namespace csharp_simple_webapi.Main.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IResult> UpdatePerson(Person person)
+        {
+            try
+            {
+                if(_list.Any(x => x.Id==person.Id))
+                {
+                    var p = _list.SingleOrDefault(x => x.Id == person.Id);
+                    if (p != null)
+                    {
+                        p.Name = person.Name;
+                        return Results.Ok(p);
+                    }
+                    return Results.NotFound();
+
+                }
+                else
+                {
+                    return Results.NotFound();
+                }
+            }
+            catch(Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
 
 
 
