@@ -1,3 +1,24 @@
 # For more info on HTTP files go to https://aka.ms/vs/httpfile
 ###
+GET https://localhost:7254/api/People
+###
 GET https://localhost:7254/api/People/14
+###
+POST https://localhost:7254/api/People
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "Bobby"
+}
+
+###
+DELETE https://localhost:7254/api/People/14
+###
+PUT https://localhost:7254/api/People
+Content-Type: application/json
+
+{
+  "id": 2,
+  "name": "Bobby"
+}
