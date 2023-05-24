@@ -71,7 +71,7 @@ namespace csharp_simple_webapi.Main.Controllers
                 if (person == null) return Results.Problem();
 
                 _list.Add(person);
-                return Results.Ok(person);
+                return Results.Created(person);
 
             }
             catch(Exception ex)
