@@ -17,10 +17,12 @@ namespace csharp_simple_webapi.Main.Controllers
                 Person person1 = new Person();
                 person1.Id = 1;
                 person1.Name = "Nigel";
+                person1.Age = 21;
 
                 Person person2 = new Person();
                 person2.Id = 2;
                 person2.Name = "Dave";
+                person1.Age = 22;
 
                 _list.Add(person1);
                 _list.Add(person2);
@@ -68,10 +70,18 @@ namespace csharp_simple_webapi.Main.Controllers
         {
             try
             {
+                if(ModelState.IsValid)
+                {
+                    return Results.Problem("validation error");
                 if (person == null) return Results.Problem();
 
                 _list.Add(person);
-                return Results.Created(person);
+                return Results.Created("https://localhost:7254/api/People", person);
+                }
+                else
+                {
+                    return Results.Problem(); 
+                }
 
             }
             catch(Exception ex)
@@ -143,13 +153,7 @@ namespace csharp_simple_webapi.Main.Controllers
 
 /*
 
-REST API
 
-HTTPS
-
-Clients and Servers
-
-Http Cycle?
 
 
 
