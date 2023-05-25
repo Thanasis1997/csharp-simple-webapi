@@ -66,22 +66,18 @@ namespace csharp_simple_webapi.Main.Controllers
 
         [HttpPost]
         [Route("")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         public async Task<IResult> InsertPerson(Person person)
         {
             try
-            {
-                if(ModelState.IsValid)
-                {
-                    return Results.Problem("validation error");
-                if (person == null) return Results.Problem();
+            {               
+                    if (person == null) return Results.Problem();
 
-                _list.Add(person);
-                return Results.Created("https://localhost:7254/api/People", person);
-                }
-                else
-                {
-                    return Results.Problem(); 
-                }
+                    person.Id = _list.Count + 1;
+                    _list.Add(person);
+                //eturn Results.Created($"https://localhost:7254/api/People/{person.Id}", person);
+                return Results.Ok(person);
+
 
             }
             catch(Exception ex)
